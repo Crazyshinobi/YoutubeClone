@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 
 import { Link } from "react-router-dom";
-import { API_KEY } from "../../data";
 import { valueConverter } from "../../data";
 
 import "./Feed.css";
@@ -11,7 +10,7 @@ const Feed = ({ category }) => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const videolist_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${API_KEY}`;
+    const videolist_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${process.env.API_KEY}`;
 
     await fetch(videolist_url)
       .then((response) => response.json())

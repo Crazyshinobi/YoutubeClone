@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { valueConverter } from "../../data";
-import { API_KEY } from "../../data";
+
 import "./Recommended.css";
 
 const Recommended = ({ categoryId }) => {
   const [apiData, setApiData] = useState([]);
 
   const fetchData = async () => {
-    const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
+    const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&videoCategoryId=${categoryId}&key=${process.env.API_KEY}`;
 
     await fetch(relatedVideo_url)
       .then((res) => res.json())
